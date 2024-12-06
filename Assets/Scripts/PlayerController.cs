@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Al finalizar el juego deshabilitamos el player controller así que añadimos esto para evitar errores y warnings en consola
+        if (!enabled) return;
+
         float turn = Input.GetAxis("Horizontal");
         float movement = Input.GetAxis("Vertical");
 
