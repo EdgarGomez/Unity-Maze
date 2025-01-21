@@ -1,11 +1,14 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndZone : MonoBehaviour
 {
     [SerializeField] private GameObject endPanel;
     [SerializeField] private Timer timer;
     [SerializeField] private TMP_Text endMessageText;
+    [SerializeField] private GameManagerSO gameManager;
+
 
     private void Start()
     {
@@ -16,7 +19,7 @@ public class EndZone : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>() != null)
         {
-            Time.timeScale = 0f;
+            gameManager.EndGame();
             timer.StopTimer();
             string finalTime = timer.GetCurrentTimeFormatted();
             endMessageText.text = $"Congratulations!\n\n You made it.\n You beat The Maze in {finalTime}.\n\n You can restart The Maze by pressing R.";
@@ -31,9 +34,7 @@ public class EndZone : MonoBehaviour
         if (endPanel.activeSelf && Input.GetKeyDown(KeyCode.R))
         {
             Time.timeScale = 1f;
-            UnityEngine.SceneManagement.SceneManager.LoadScene(
-                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
-            );
+            SceneManager.LoadScene(1);
         }
     }
 }

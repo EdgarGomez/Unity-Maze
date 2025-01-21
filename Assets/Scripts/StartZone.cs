@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class StartZone : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject uiPanel;
+    [SerializeField] private GameObject uiPanel;
+    [SerializeField] private GameManagerSO gameManager;
+
 
     private void Start()
     {
@@ -15,6 +16,7 @@ public class StartZone : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>() != null)
         {
+            gameManager.StartGame();
             uiPanel.SetActive(true);
         }
     }
